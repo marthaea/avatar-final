@@ -1,0 +1,73 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:          #030201;
+  --bg-warm:     #0D0804;
+  --gold:        #FFB800;
+  --gold-bright: #FFD54F;
+  --gold-dim:    #A07010;
+  --gold-glow:   rgba(255,184,0,0.15);
+  --terracotta:  #FF4500;
+  --terra-glow:  rgba(255,69,0,0.18);
+  --earth:       #7A3A10;
+  --cream:       #FFF5E4;
+  --cream-dim:   rgba(255,245,228,0.6);
+  --muted:       #8A7050;
+  --dim:         #2A1800;
+  --font-display: 'Cinzel', serif;
+  --font-body:    'Raleway', sans-serif;
+  --font-mono:    'Courier Prime', monospace;
+}
+
+html { scroll-behavior: auto; }
+body { background: var(--bg); color: var(--cream); font-family: var(--font-body); overflow: hidden; cursor: none; }
+
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* ── Afrofuturist background pattern ── */
+.afro-texture {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg,  rgba(255,184,0,0.05) 0px, rgba(255,184,0,0.05) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(-45deg, rgba(255,184,0,0.05) 0px, rgba(255,184,0,0.05) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(0deg,   rgba(255,69,0,0.07)  0px, rgba(255,69,0,0.07)  1px, transparent 1px, transparent 56px);
+}
+
+/* ── Kente strip ── */
+.kente-strip {
+  height: 4px;
+  background: repeating-linear-gradient(90deg,
+    var(--gold) 0, var(--gold) 12px,
+    var(--terracotta) 12px, var(--terracotta) 22px,
+    var(--earth) 22px, var(--earth) 30px,
+    var(--gold) 30px, var(--gold) 42px,
+    var(--bg-warm) 42px, var(--bg-warm) 52px
+  );
+}
+
+/* ── Cursor ── */
+.cursor-dot  { position:fixed; top:0; left:0; width:8px; height:8px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:screen; }
+.cursor-ring { position:fixed; top:0; left:0; width:34px; height:34px; border:1px solid rgba(255,184,0,0.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform 0.18s ease; }
+
+/* ── Bold section title behind avatar ── */
+.bg-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,184,0,0.12);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@keyframes fadeSlideUp   { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeSlideIn   { from{opacity:0;transform:translateX(22px)} to{opacity:1;transform:translateX(0)} }
+@keyframes pulseGold     { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
+@keyframes spin          { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes titleReveal   { from{opacity:0;transform:translateY(30px) skewY(3deg)} to{opacity:1;transform:translateY(0) skewY(0)} }
+@keyframes glowPulse     { 0%,100%{text-shadow:0 0 20px rgba(255,184,0,0.3)} 50%{text-shadow:0 0 60px rgba(255,184,0,0.7),0 0 120px rgba(255,69,0,0.3)} }
