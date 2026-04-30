@@ -66,10 +66,10 @@ export const SKILLS = [
   },
   {
     id: 'academic', animationIndex: 5, nav: 'Academic', symbol: '⟁',
-    title: 'Academic', titleBig: 'GPA 4.81',
-    tagline: 'Near-perfect GPA. Real-world skills. Both.',
-    description: 'Maintaining a 4.81 GPA at Uganda Christian University while leading teams, shipping real products, and building a company. Excellence is not accidental.',
-    tags: ['4.81 GPA', 'UCU · Bachelor of IT', 'Team Leader', 'Windows Server 2025', 'Cisco Networking', 'Active Directory'],
+    title: 'Academic', titleBig: 'Discipline and precision',
+    tagline: 'Determination. Real-world skills. Both.',
+    description: 'Maintaining a perfect discipline at Uganda Christian University while leading teams, shipping real products, and building a company. Excellence is not accidental.',
+    tags: ['Discipline', 'UCU · Bachelor of IT', 'Team Leader', 'Windows Server 2025', 'Cisco Networking', 'Active Directory'],
     projects: [
       { name: 'Server Systems — Group 18', desc: 'Led Group 18 in building a full Windows Server 2025 infrastructure: AD, DNS, DHCP, GPOs, BitLocker.', stack: 'Windows Server · AD DS', url: 'https://github.com/marthaea', color: '#D4A843' },
       { name: 'Enterprise Networking', desc: 'Co-led OSPF, HSRP, VLAN, NAT/PAT, and ACL configuration across three simulated office sites.', stack: 'Cisco Packet Tracer · OSPF', url: 'https://github.com/marthaea', color: '#B8431A' },
