@@ -6,19 +6,20 @@ export default function NavBar({ skills, activeIndex, onNavClick }) {
       display: 'flex',
       alignItems: 'stretch',
       height: '58px',
-      background: 'rgba(5,3,2,0.88)',
+      background: 'rgba(255,255,255,0.88)',
       backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid rgba(212,168,67,0.15)',
+      borderBottom: '1px solid rgba(212,168,67,0.25)',
+      boxShadow: '0 2px 20px rgba(23,19,15,0.05)',
     }}>
       {/* Kente top strip */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '3px',
-        background: 'repeating-linear-gradient(90deg,#D4A843 0,#D4A843 10px,#B8431A 10px,#B8431A 18px,#6B3A1F 18px,#6B3A1F 24px,#D4A843 24px,#D4A843 34px,#050302 34px,#050302 42px)',
+        background: 'repeating-linear-gradient(90deg,#D4A843 0,#D4A843 10px,#B8431A 10px,#B8431A 18px,#6B3A1F 18px,#6B3A1F 24px,#D4A843 24px,#D4A843 34px,#FFFFFF 34px,#FFFFFF 42px)',
       }} />
 
       {/* Logo */}
       <div style={{
-        padding: '0 2rem',
+        padding: '0 clamp(0.9rem, 3vw, 2rem)',
         display: 'flex', alignItems: 'center',
         borderRight: '1px solid rgba(212,168,67,0.12)',
         flexShrink: 0,
@@ -49,7 +50,7 @@ export default function NavBar({ skills, activeIndex, onNavClick }) {
                 background: 'none',
                 border: 'none',
                 borderRight: '1px solid rgba(212,168,67,0.08)',
-                padding: '0 1.4rem',
+                padding: '0 clamp(0.55rem, 2.2vw, 1.4rem)',
                 cursor: 'none',
                 display: 'flex',
                 flexDirection: 'column',
@@ -104,7 +105,7 @@ export default function NavBar({ skills, activeIndex, onNavClick }) {
 
       {/* Status badge */}
       <div style={{
-        padding: '0 2rem',
+        padding: '0 clamp(0.9rem, 3vw, 2rem)',
         display: 'flex', alignItems: 'center',
         borderLeft: '1px solid rgba(212,168,67,0.12)',
         flexShrink: 0,
@@ -121,8 +122,9 @@ export default function NavBar({ skills, activeIndex, onNavClick }) {
             background: '#B8431A',
             borderRadius: '50%',
             animation: 'pulseGold 1.8s ease-in-out infinite',
+            flexShrink: 0,
           }} />
-          <span style={{
+          <span className="nav-status-label" style={{
             fontFamily: 'var(--font-body)',
             fontSize: '0.55rem',
             fontWeight: 500,

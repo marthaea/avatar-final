@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Original (pre-compression) 3D models — kept locally as a backup only
+original-models-backup/
+
 # Build output
 dist/
 dist-ssr/

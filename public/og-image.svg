@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  <rect width="1200" height="630" fill="url(#texture)"/>
+  <defs>
+    <pattern id="texture" width="56" height="56" patternUnits="userSpaceOnUse">
+      <rect width="56" height="56" fill="none"/>
+      <line x1="0" y1="56" x2="56" y2="0" stroke="#FFB800" stroke-width="1" opacity="0.08"/>
+      <line x1="0" y1="0" x2="56" y2="56" stroke="#FFB800" stroke-width="1" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <circle cx="960" cy="315" r="230" fill="none" stroke="#E8491D" stroke-width="2" opacity="0.35"/>
+  <circle cx="960" cy="315" r="150" fill="none" stroke="#FFB800" stroke-width="2" opacity="0.5"/>
+  <path d="M960 205 L1050 315 L960 425 L870 315 Z" fill="none" stroke="#3AA0FF" stroke-width="5" stroke-linejoin="round" opacity="0.85"/>
+
+  <text x="90" y="260" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="72" letter-spacing="1" fill="#1A140D">MARTHA PRAISE</text>
+  <text x="90" y="345" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="72" letter-spacing="1" fill="#1A140D">KATUSIIME</text>
+
+  <rect x="90" y="380" width="70" height="6" rx="3" fill="#FFB800"/>
+
+  <text x="90" y="430" font-family="Verdana, sans-serif" font-size="26" letter-spacing="1" fill="#7C6B57">Developer · Designer · Animator · Author · Co-Founder</text>
+  <text x="90" y="470" font-family="Verdana, sans-serif" font-size="22" letter-spacing="0.5" fill="#8F640C">Kampala, Uganda</text>
+
+  <g>
+    <rect x="0" y="610" width="100" height="20" fill="#FFB800"/>
+    <rect x="100" y="610" width="80" height="20" fill="#E8491D"/>
+    <rect x="180" y="610" width="60" height="20" fill="#7A3A10"/>
+    <rect x="240" y="610" width="100" height="20" fill="#FFB800"/>
+    <rect x="340" y="610" width="80" height="20" fill="#E8491D"/>
+    <rect x="420" y="610" width="60" height="20" fill="#7A3A10"/>
+    <rect x="480" y="610" width="100" height="20" fill="#FFB800"/>
+    <rect x="580" y="610" width="80" height="20" fill="#E8491D"/>
+    <rect x="660" y="610" width="60" height="20" fill="#7A3A10"/>
+    <rect x="720" y="610" width="100" height="20" fill="#FFB800"/>
+    <rect x="820" y="610" width="80" height="20" fill="#E8491D"/>
+    <rect x="900" y="610" width="60" height="20" fill="#7A3A10"/>
+    <rect x="960" y="610" width="100" height="20" fill="#FFB800"/>
+    <rect x="1060" y="610" width="80" height="20" fill="#E8491D"/>
+    <rect x="1140" y="610" width="60" height="20" fill="#7A3A10"/>
+  </g>
+</svg>

@@ -61,13 +61,13 @@ export default function AvatarScene({ activeIndex, onLoad, onProgressUpdate }) {
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFSoftShadowMap
     renderer.toneMapping = THREE.ACESFilmicToneMapping
-    renderer.toneMappingExposure = 1.5
+    renderer.toneMappingExposure = 1.15
     container.appendChild(renderer.domElement)
     s.renderer = renderer
 
     // ── Scene ─────────────────────────────────────────────────────
     const scene = new THREE.Scene()
-    scene.fog = new THREE.FogExp2(0x050302, 0.055)
+    scene.fog = new THREE.FogExp2(0xFFFFFF, 0.028)
 
     // ── Camera ────────────────────────────────────────────────────
     const camera = new THREE.PerspectiveCamera(
@@ -77,10 +77,10 @@ export default function AvatarScene({ activeIndex, onLoad, onProgressUpdate }) {
     camera.lookAt(0, 0.9, 0)
     s.camera = camera
 
-    // ── Lighting ──────────────────────────────────────────────────
-    scene.add(new THREE.AmbientLight(0x200E05, 1.5))
+    // ── Lighting — clean modern studio setup ────────────────────────
+    scene.add(new THREE.AmbientLight(0xFFFFFF, 1.6))
 
-    const key = new THREE.DirectionalLight(0xFFD060, 5.0)
+    const key = new THREE.DirectionalLight(0xFFFFFF, 4.2)
     key.position.set(2.5, 5.5, 3)
     key.castShadow = true
     key.shadow.mapSize.set(2048, 2048)
@@ -90,51 +90,52 @@ export default function AvatarScene({ activeIndex, onLoad, onProgressUpdate }) {
     key.shadow.bias = -0.001
     scene.add(key)
 
-    const fill = new THREE.DirectionalLight(0xFF4500, 1.8)
+    const fill = new THREE.DirectionalLight(0xEAF2FF, 2.0)
     fill.position.set(-3.5, 1.5, 1)
     scene.add(fill)
 
-    const rim = new THREE.DirectionalLight(0xFFBB00, 3.5)
+    const rim = new THREE.DirectionalLight(0xFFFFFF, 3.0)
     rim.position.set(-0.5, 3.5, -4)
     scene.add(rim)
 
-    const spot = new THREE.SpotLight(0xFFAA00, 5.0, 7, Math.PI / 9, 0.65, 1.5)
+    const spot = new THREE.SpotLight(0xFFFFFF, 4.0, 7, Math.PI / 9, 0.65, 1.5)
     spot.position.set(0, 6, 0.5)
     spot.target.position.set(0, 0, 0)
     scene.add(spot); scene.add(spot.target)
 
-    const counter = new THREE.PointLight(0x004444, 1.2, 9)
+    // Vibrant accent pops — modern-studio color grading, not warm/dull
+    const counter = new THREE.PointLight(0x3AA0FF, 1.1, 9)
     counter.position.set(0, 2.5, -4)
     scene.add(counter)
 
-    const footLight = new THREE.PointLight(0xFF8800, 2.0, 3)
+    const footLight = new THREE.PointLight(0xFFB800, 1.6, 3)
     footLight.position.set(0, 0.3, 1.5)
     scene.add(footLight)
 
     // ── Ground ────────────────────────────────────────────────────
     const ground = new THREE.Mesh(
       new THREE.CircleGeometry(4, 72),
-      new THREE.MeshStandardMaterial({ color: 0x0D0804, metalness: 0.8, roughness: 0.3 })
+      new THREE.MeshStandardMaterial({ color: 0xF4F1EA, metalness: 0.35, roughness: 0.45 })
     )
     ground.rotation.x = -Math.PI / 2
     ground.receiveShadow = true
     scene.add(ground)
 
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0xFFAA00, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0xE8491D, side: THREE.DoubleSide, transparent: true, opacity: 0.65 })
     const ring = new THREE.Mesh(new THREE.RingGeometry(0.42, 0.56, 80), ringMat)
     ring.rotation.x = -Math.PI / 2; ring.position.y = 0.002
     scene.add(ring); s.ring = ring
 
     const midRing = new THREE.Mesh(
       new THREE.RingGeometry(1.1, 1.16, 80),
-      new THREE.MeshBasicMaterial({ color: 0xFF4500, side: THREE.DoubleSide, transparent: true, opacity: 0.28 })
+      new THREE.MeshBasicMaterial({ color: 0xFFB800, side: THREE.DoubleSide, transparent: true, opacity: 0.32 })
     )
     midRing.rotation.x = -Math.PI / 2; midRing.position.y = 0.002
     scene.add(midRing); s.outerRing = midRing
 
     const outerRingMesh = new THREE.Mesh(
       new THREE.RingGeometry(1.9, 1.93, 80),
-      new THREE.MeshBasicMaterial({ color: 0xFFBB00, side: THREE.DoubleSide, transparent: true, opacity: 0.10 })
+      new THREE.MeshBasicMaterial({ color: 0x3AA0FF, side: THREE.DoubleSide, transparent: true, opacity: 0.16 })
     )
     outerRingMesh.rotation.x = -Math.PI / 2; outerRingMesh.position.y = 0.002
     scene.add(outerRingMesh)
@@ -152,7 +153,7 @@ export default function AvatarScene({ activeIndex, onLoad, onProgressUpdate }) {
     }
     pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3))
     const particles = new THREE.Points(pGeo, new THREE.PointsMaterial({
-      color: 0xFFCC44, size: 0.022, transparent: true, opacity: 0.7, depthWrite: false,
+      color: 0xE8491D, size: 0.022, transparent: true, opacity: 0.55, depthWrite: false,
     }))
     scene.add(particles)
     s.particles = { mesh: particles, positions: pPos, phases: pPhase }

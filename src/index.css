@@ -1,19 +1,19 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg:          #030201;
-  --bg-warm:     #0D0804;
+  --bg:          #FFFFFF;
+  --bg-warm:     #FAF6F0;
   --gold:        #FFB800;
   --gold-bright: #FFD54F;
-  --gold-dim:    #A07010;
+  --gold-dim:    #8F640C;
   --gold-glow:   rgba(255,184,0,0.15);
-  --terracotta:  #FF4500;
-  --terra-glow:  rgba(255,69,0,0.18);
+  --terracotta:  #E8491D;
+  --terra-glow:  rgba(232,73,29,0.16);
   --earth:       #7A3A10;
-  --cream:       #FFF5E4;
-  --cream-dim:   rgba(255,245,228,0.6);
-  --muted:       #8A7050;
-  --dim:         #2A1800;
+  --cream:       #1A140D;
+  --cream-dim:   rgba(26,20,13,0.62);
+  --muted:       #7C6B57;
+  --dim:         #E8E1D3;
   --font-display: 'Cinzel', serif;
   --font-body:    'Raleway', sans-serif;
   --font-mono:    'Courier Prime', monospace;
@@ -30,9 +30,9 @@ body { background: var(--bg); color: var(--cream); font-family: var(--font-body)
 .afro-texture {
   position: absolute; inset: 0; pointer-events: none;
   background-image:
-    repeating-linear-gradient(45deg,  rgba(255,184,0,0.05) 0px, rgba(255,184,0,0.05) 1px, transparent 1px, transparent 28px),
-    repeating-linear-gradient(-45deg, rgba(255,184,0,0.05) 0px, rgba(255,184,0,0.05) 1px, transparent 1px, transparent 28px),
-    repeating-linear-gradient(0deg,   rgba(255,69,0,0.07)  0px, rgba(255,69,0,0.07)  1px, transparent 1px, transparent 56px);
+    repeating-linear-gradient(45deg,  rgba(255,184,0,0.07) 0px, rgba(255,184,0,0.07) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(-45deg, rgba(255,184,0,0.07) 0px, rgba(255,184,0,0.07) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(0deg,   rgba(232,73,29,0.08)  0px, rgba(232,73,29,0.08)  1px, transparent 1px, transparent 56px);
 }
 
 /* ── Kente strip ── */
@@ -48,8 +48,8 @@ body { background: var(--bg); color: var(--cream); font-family: var(--font-body)
 }
 
 /* ── Cursor ── */
-.cursor-dot  { position:fixed; top:0; left:0; width:8px; height:8px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:screen; }
-.cursor-ring { position:fixed; top:0; left:0; width:34px; height:34px; border:1px solid rgba(255,184,0,0.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform 0.18s ease; }
+.cursor-dot  { position:fixed; top:0; left:0; width:8px; height:8px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:multiply; }
+.cursor-ring { position:fixed; top:0; left:0; width:34px; height:34px; border:1px solid rgba(232,73,29,0.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform 0.18s ease; }
 
 /* ── Bold section title behind avatar ── */
 .bg-title {
@@ -59,7 +59,7 @@ body { background: var(--bg); color: var(--cream); font-family: var(--font-body)
   letter-spacing: -0.02em;
   line-height: 0.85;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,184,0,0.12);
+  -webkit-text-stroke: 1px rgba(232,73,29,0.18);
   user-select: none;
   pointer-events: none;
   white-space: nowrap;
@@ -70,4 +70,25 @@ body { background: var(--bg); color: var(--cream); font-family: var(--font-body)
 @keyframes pulseGold     { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
 @keyframes spin          { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 @keyframes titleReveal   { from{opacity:0;transform:translateY(30px) skewY(3deg)} to{opacity:1;transform:translateY(0) skewY(0)} }
-@keyframes glowPulse     { 0%,100%{text-shadow:0 0 20px rgba(255,184,0,0.3)} 50%{text-shadow:0 0 60px rgba(255,184,0,0.7),0 0 120px rgba(255,69,0,0.3)} }
+@keyframes glowPulse     { 0%,100%{text-shadow:0 0 12px rgba(255,184,0,0.25)} 50%{text-shadow:0 0 28px rgba(255,184,0,0.55),0 0 50px rgba(232,73,29,0.25)} }
+
+/* ── Reduced motion: kill decorative CSS animation/transition, keep instant state changes ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto !important; }
+}
+
+/* ── Touch / coarse-pointer devices: no mouse to track, use a real cursor ── */
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ── Narrow viewports: trim chrome that doesn't fit a phone-width nav bar ── */
+@media (max-width: 520px) {
+  .nav-status-label { display: none; }
+}

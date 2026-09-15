@@ -1,24 +1,39 @@
-export default function SkillPanel({ skill, index, total }) {
+export default function SkillPanel({ skill, index, total, isNarrow }) {
   if (!skill) return null
 
-  return (
-    <div
-      key={skill.id}
-      style={{
+  // Narrow screens: the 34vw side column has no room for this content, so it
+  // becomes a scrollable bottom sheet instead (fixes overflowing/clipped text
+  // and content that was unreachable below the fold on short phones).
+  const wrapperStyle = isNarrow
+    ? {
+        position: 'fixed', left: '0.75rem', right: '0.75rem', bottom: '0.75rem',
+        top: 'auto', width: 'auto', maxHeight: '48vh', overflowY: 'auto',
+        zIndex: 30, pointerEvents: 'auto', paddingTop: 0,
+        background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(14px)',
+        border: '1px solid rgba(232,73,29,0.12)', borderRadius: '14px',
+        padding: '1rem 1.1rem 1.2rem',
+        boxShadow: '0 -8px 30px rgba(23,19,15,0.12)',
+        animation: 'fadeSlideUp 0.4s cubic-bezier(0.25,0.46,0.45,0.94) forwards',
+      }
+    : {
         position: 'fixed', top: '50%', right: '2.5rem',
         transform: 'translateY(-48%)',
         width: 'min(370px, 34vw)',
         zIndex: 30, pointerEvents: 'none',
         paddingTop: '58px',
         animation: 'fadeSlideIn 0.45s cubic-bezier(0.25,0.46,0.45,0.94) forwards',
-      }}
-    >
-      {/* Ghost symbol */}
-      <div style={{
-        position: 'absolute', top: '2rem', right: '-0.5rem',
-        fontFamily: 'var(--font-mono)', fontSize: '7rem',
-        color: 'rgba(255,184,0,0.05)', lineHeight: 1, userSelect: 'none',
-      }}>{skill.symbol}</div>
+      }
+
+  return (
+    <div key={skill.id} style={wrapperStyle}>
+      {/* Ghost symbol — decorative only, skip it in the compact mobile sheet */}
+      {!isNarrow && (
+        <div style={{
+          position: 'absolute', top: '2rem', right: '-0.5rem',
+          fontFamily: 'var(--font-mono)', fontSize: '7rem',
+          color: 'rgba(232,73,29,0.08)', lineHeight: 1, userSelect: 'none',
+        }}>{skill.symbol}</div>
+      )}
 
       {/* Section counter */}
       <div style={{
@@ -44,7 +59,6 @@ export default function SkillPanel({ skill, index, total }) {
           color: 'var(--cream)',
           marginBottom: '0.3rem',
           animation: 'titleReveal 0.5s cubic-bezier(0.25,0.46,0.45,0.94) forwards',
-          textShadow: '0 0 40px rgba(255,184,0,0.25)',
         }}
       >
         {skill.title}
@@ -99,24 +113,27 @@ export default function SkillPanel({ skill, index, total }) {
             rel="noopener noreferrer"
             style={{
               textDecoration: 'none', display: 'block',
-              background: 'rgba(8,4,1,0.82)',
-              border: '1px solid rgba(255,184,0,0.1)',
+              background: 'rgba(255,255,255,0.82)',
+              border: '1px solid rgba(232,73,29,0.12)',
               borderLeft: `3px solid ${project.color}`,
               borderRadius: '3px', padding: '0.65rem 0.85rem',
               backdropFilter: 'blur(10px)',
+              boxShadow: '0 2px 14px rgba(23,19,15,0.06)',
               position: 'relative', overflow: 'hidden',
               cursor: 'pointer',
-              transition: 'background 0.2s, border-color 0.2s, transform 0.2s',
+              transition: 'background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'rgba(20,10,2,0.95)'
-              e.currentTarget.style.borderColor = 'rgba(255,184,0,0.32)'
+              e.currentTarget.style.background = 'rgba(255,255,255,0.98)'
+              e.currentTarget.style.borderColor = 'rgba(232,73,29,0.32)'
               e.currentTarget.style.transform = 'translateX(-4px)'
+              e.currentTarget.style.boxShadow = '0 6px 22px rgba(23,19,15,0.12)'
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.background = 'rgba(8,4,1,0.82)'
-              e.currentTarget.style.borderColor = 'rgba(255,184,0,0.1)'
+              e.currentTarget.style.background = 'rgba(255,255,255,0.82)'
+              e.currentTarget.style.borderColor = 'rgba(232,73,29,0.12)'
               e.currentTarget.style.transform = 'translateX(0)'
+              e.currentTarget.style.boxShadow = '0 2px 14px rgba(23,19,15,0.06)'
             }}
           >
             <div style={{ position:'absolute', inset:0, background:`linear-gradient(135deg,${project.color}10 0%,transparent 55%)`, pointerEvents:'none' }} />
